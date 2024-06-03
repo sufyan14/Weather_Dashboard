@@ -43,8 +43,13 @@ function updateCurrentWeather(data) {
 function updateForecast(data) {
     const forecastContainer = document.getElementById('forecast-container');
     forecastContainer.innerHTML = '';
-    for (let i = 0; i < 5; i++) {
-        const forecast = data.list[i];
+
+    // Get the forecast for the next 5 days
+    const forecasts = data.list.filter(forecast => {
+        return new Date(forecast.dt_txt).getHours() === 12; // Filter for forecasts at 12:00 PM
+    }).slice(0, 5); // Get the first 5 days
+
+    forecasts.forEach(forecast => {
         const forecastElement = document.createElement('div');
         forecastElement.className = 'forecast-item';
         forecastElement.innerHTML = `
@@ -53,7 +58,7 @@ function updateForecast(data) {
             <p>${forecast.weather[0].description}</p>
         `;
         forecastContainer.appendChild(forecastElement);
-    }
+    });
 }
 
 function getLocation() {
@@ -67,11 +72,10 @@ function getLocation() {
         }, error => {
             console.error('Error getting location:', error);
             // Fallback to a default location if geolocation fails
-            fetchWeatherData('New York');
+            fetchWeatherData('Karachi');
         });
     } else {
-        // Geolocation is not supported by this browser, fallback to a default location
-        fetchWeatherData('New York');
+        fetchWeatherData('Karachi');
     }
 }
 
