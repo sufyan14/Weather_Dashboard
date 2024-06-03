@@ -1,14 +1,26 @@
 body {
-    font-family: Arial, sans-serif;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     margin: 0;
     padding: 0;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: #e0eafc;
-    background: -webkit-linear-gradient(to right, #cfdef3, #e0eafc);
-    background: linear-gradient(to right, #cfdef3, #e0eafc);
+    background: linear-gradient(-45deg, #cfdef3, #e0eafc, #a1c4fd, #c2e9fb);
+    background-size: 400% 400%;
+    animation: gradientBackground 15s ease infinite;
+}
+
+@keyframes gradientBackground {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .weather-dashboard {
@@ -18,7 +30,7 @@ body {
     overflow: hidden;
     max-width: 500px;
     width: 100%;
-    padding: 20px;
+    padding: 30px;
 }
 
 .search {
@@ -33,19 +45,23 @@ body {
     border: 1px solid #ccc;
     border-radius: 4px 0 0 4px;
     outline: none;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif ;
 }
 
 .search button {
     padding: 10px 20px;
-    border: 1px solid #007BFF;
+    border: 1px solid #98caff;
     border-radius: 0 4px 4px 0;
-    background-color: #007BFF;
-    color: white;
+    background-color: #98caff;
+    color: black;
     cursor: pointer;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .search button:hover {
-    background-color: #0056b3;
+    background-color: #3f93ec;
+    border-color: #3f93ec;
+    color: white;
 }
 
 .current-weather, .forecast {
@@ -53,10 +69,13 @@ body {
 }
 
 .current-weather p, .forecast p {
-    margin: 5px 0;
+    margin: 10px 0;
+    text-transform: capitalize;
+    padding: 2px;
 }
 
 #forecast-container {
     display: flex;
     justify-content: space-between;
+    text-align: center;
 }
